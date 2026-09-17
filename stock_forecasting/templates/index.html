@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Stock Forecasting System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="/" class="navbar-brand">
+                <span class="icon">📈</span>
+                <span>AI Stock Forecasting</span>
+            </a>
+            <ul class="navbar-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">AI-Driven Stock Forecasting System</h1>
+            <p class="hero-subtitle">
+                Harness the power of Machine Learning and Deep Learning to predict stock prices, 
+                analyze market trends, and make informed investment decisions with confidence.
+            </p>
+        </section>
+
+        <!-- Alert Container -->
+        <div id="alertContainer"></div>
+
+        <!-- Prediction Form -->
+        <section class="form-section">
+            <div class="card-header">
+                <span class="card-icon">🎯</span>
+                <h2 class="card-title">Start Your Analysis</h2>
+            </div>
+            
+            <form id="predictForm">
+                <div class="form-group">
+                    <label class="form-label" for="ticker">Stock Ticker Symbol</label>
+                    <input 
+                        type="text" 
+                        id="ticker" 
+                        class="form-input" 
+                        placeholder="e.g., AAPL, TSLA, GOOGL, MSFT, INFY.NS"
+                        required
+                        autocomplete="off"
+                    >
+                    <small style="color: #a0aec0; margin-top: 0.5rem; display: block;">
+                        💡 Examples: AAPL (Apple), TSLA (Tesla), GOOGL (Google), MSFT (Microsoft), INFY.NS (Infosys India)
+                    </small>
+                </div>
+
+                <div class="date-inputs">
+                    <div class="form-group">
+                        <label class="form-label" for="startDate">Start Date</label>
+                        <input 
+                            type="date" 
+                            id="startDate" 
+                            class="form-input"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="endDate">End Date</label>
+                        <input 
+                            type="date" 
+                            id="endDate" 
+                            class="form-input"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <button type="submit" id="predictButton" class="btn btn-primary btn-block">
+                    📈 Predict Stock Price
+                </button>
+            </form>
+        </section>
+
+        <!-- Loading Container -->
+        <div id="loadingContainer" class="loading-container">
+            <div class="spinner"></div>
+            <p class="loading-text">🤖 AI Models are analyzing the stock data...</p>
+            <p class="loading-text" style="font-size: 0.9rem; margin-top: 0.5rem;">
+                Training Linear Regression, Random Forest, and LSTM models
+            </p>
+        </div>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="hidden">
+            <!-- Company Header -->
+            <div class="card mb-4">
+                <div style="text-align: center;">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;" id="companyName">-</h2>
+                    <p style="color: #a0aec0; font-size: 1.25rem; font-weight: 600;">
+                        <span id="tickerSymbol">-</span>
+                    </p>
+                    <p style="color: #a0aec0; font-size: 0.875rem; margin-top: 1rem;">
+                        Last Updated: <span id="lastUpdated">-</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Stats Dashboard -->
+            <div class="dashboard-grid mb-4">
+                <!-- Current Price -->
+                <div class="stat-card">
+                    <div class="stat-label">Current Price</div>
+                    <div class="stat-value" id="currentPrice">$0.00</div>
+                    <div class="stat-change" id="priceChange">-</div>
+                </div>
+
+                <!-- Predicted Price -->
+                <div class="stat-card">
+                    <div class="stat-label">Predicted Price (7 Days)</div>
+                    <div class="stat-value" id="predictedPrice">$0.00</div>
+                    <div style="color: #a0aec0; font-size: 0.875rem; margin-top: 0.25rem;">
+                        Based on <span id="bestModel">-</span>
+                    </div>
+                </div>
+
+                <!-- Recommendation -->
+                <div class="stat-card">
+                    <div class="stat-label">Recommendation</div>
+                    <div style="margin-top: 0.75rem;">
+                        <span class="recommendation-badge" id="recommendation">HOLD</span>
+                    </div>
+                    <div style="color: #a0aec0; font-size: 0.875rem; margin-top: 0.75rem;" id="recommendationReason">
+                        -
+                    </div>
+                </div>
+
+                <!-- Risk Level -->
+                <div class="stat-card">
+                    <div class="stat-label">Risk Assessment</div>
+                    <div style="margin-top: 0.75rem;">
+                        <span class="risk-badge" id="riskLevel">Medium Risk</span>
+                    </div>
+                    <div style="color: #a0aec0; font-size: 0.875rem; margin-top: 0.75rem;">
+                        Volatility: <span id="volatility">-</span>
+                    </div>
+                </div>
+
+                <!-- Data Points -->
+                <div class="stat-card">
+                    <div class="stat-label">Data Points Analyzed</div>
+                    <div class="stat-value" id="dataPoints">0</div>
+                    <div style="color: #a0aec0; font-size: 0.875rem; margin-top: 0.25rem;">
+                        Historical trading days
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="chart-container">
+                <h3 class="chart-title">
+                    <span>📊</span>
+                    Historical Price Chart
+                </h3>
+                <div class="chart-wrapper">
+                    <canvas id="historicalChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">
+                    <span>📉</span>
+                    Moving Averages Analysis
+                </h3>
+                <div class="chart-wrapper">
+                    <canvas id="movingAveragesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">
+                    <span>🎯</span>
+                    Actual vs Predicted Prices
+                </h3>
+                <div class="chart-wrapper">
+                    <canvas id="predictionChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Model Comparison -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🤖</span>
+                    <h3 class="card-title">Model Performance Comparison</h3>
+                </div>
+                <div class="card-body">
+                    <table class="model-table">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>RMSE (Lower is Better)</th>
+                                <th>MAE (Lower is Better)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modelComparisonBody">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                    <p style="color: #a0aec0; font-size: 0.875rem; margin-top: 1rem;">
+                        ⭐ The model with the lowest RMSE is automatically selected for predictions
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="info-section">
+            <div class="info-card">
+                <div class="info-icon">🧠</div>
+                <h3 class="info-title">AI-Powered Analysis</h3>
+                <p class="info-text">
+                    Multiple machine learning models including Linear Regression, Random Forest, 
+                    and LSTM neural networks work together to provide accurate predictions.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">📈</div>
+                <h3 class="info-title">Technical Indicators</h3>
+                <p class="info-text">
+                    Comprehensive analysis with moving averages (MA7, MA21, MA50), volatility metrics,
+                    and trend patterns to support investment decisions.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">🎯</div>
+                <h3 class="info-title">Smart Recommendations</h3>
+                <p class="info-text">
+                    Get clear BUY, SELL, or HOLD recommendations based on predicted trends,
+                    along with risk assessments to manage your portfolio effectively.
+                </p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" style="margin-top: 4rem; padding: 2rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color);">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem;">About This System</h2>
+            <div style="max-width: 800px; margin: 0 auto; color: var(--text-secondary); line-height: 1.8;">
+                <p style="margin-bottom: 1rem;">
+                    This AI-Driven Stock Forecasting and Investment Decision Support System leverages advanced 
+                    machine learning algorithms to analyze historical stock market data and predict future price movements.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    <strong style="color: var(--text-primary);">Key Technologies:</strong><br>
+                    • Python Flask for robust backend API<br>
+                    • TensorFlow/Keras for LSTM deep learning models<br>
+                    • Scikit-Learn for traditional ML algorithms<br>
+                    • Yahoo Finance API for real-time market data<br>
+                    • Chart.js for interactive data visualization
+                </p>
+                <p>
+                    <strong style="color: var(--text-primary);">Disclaimer:</strong> 
+                    This system is designed for educational and analytical purposes. Stock market investments 
+                    carry inherent risks. Always conduct thorough research and consult with financial advisors 
+                    before making investment decisions.
+                </p>
+            </div>
+        </section>
+    </div>
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 AI Stock Forecasting System. Built with Machine Learning & Deep Learning.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+            Powered by TensorFlow, Scikit-Learn, and Flask
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

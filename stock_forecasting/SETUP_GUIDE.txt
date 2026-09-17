@@ -1,0 +1,159 @@
+================================================================================
+    AI-DRIVEN STOCK FORECASTING SYSTEM - QUICK SETUP GUIDE
+================================================================================
+
+📋 PREREQUISITES:
+   - Python 3.8 or higher
+   - pip (Python package manager)
+   - 4GB RAM minimum
+   - Internet connection (for downloading stock data)
+
+================================================================================
+
+🚀 QUICK START (3 STEPS):
+
+   STEP 1: Install Dependencies
+   -----------------------------
+   Open terminal/command prompt in the project folder and run:
+   
+   pip install -r requirements.txt
+   
+   (This may take 5-10 minutes for TensorFlow installation)
+
+   STEP 2: Run the Application
+   ----------------------------
+   python app.py
+   
+   OR use the convenient startup scripts:
+   - Linux/Mac: ./run.sh
+   - Windows: run.bat
+
+   STEP 3: Open Browser
+   ---------------------
+   Navigate to: http://127.0.0.1:5000
+
+================================================================================
+
+💡 USAGE:
+
+   1. Enter a stock ticker symbol (e.g., AAPL, TSLA, GOOGL, MSFT)
+   2. Select date range (default: last 2 years)
+   3. Click "Predict Stock Price"
+   4. Wait 30-60 seconds for model training
+   5. View predictions, recommendations, and charts!
+
+================================================================================
+
+📊 EXAMPLE STOCK SYMBOLS:
+
+   US Stocks:
+   - AAPL (Apple)
+   - TSLA (Tesla)
+   - GOOGL (Google)
+   - MSFT (Microsoft)
+   - AMZN (Amazon)
+   - NVDA (NVIDIA)
+   - META (Meta/Facebook)
+
+   Indian Stocks:
+   - INFY.NS (Infosys)
+   - TCS.NS (Tata Consultancy)
+   - RELIANCE.NS (Reliance Industries)
+
+================================================================================
+
+🛠️ TROUBLESHOOTING:
+
+   Problem: Port 5000 already in use
+   Solution: Edit app.py and change the port number:
+            app.run(debug=True, host='0.0.0.0', port=8000)
+
+   Problem: TensorFlow installation fails
+   Solution: Install CPU-only version:
+            pip install tensorflow-cpu==2.15.0
+
+   Problem: "Invalid ticker symbol"
+   Solution: Verify the ticker symbol on finance.yahoo.com
+            For Indian stocks, add .NS suffix (e.g., INFY.NS)
+
+   Problem: "Not enough historical data"
+   Solution: Select a longer date range (minimum 100 trading days)
+
+================================================================================
+
+📁 PROJECT STRUCTURE:
+
+   stock_forecasting/
+   ├── app.py                    # Main Flask application
+   ├── requirements.txt          # Dependencies
+   ├── model/
+   │   ├── train_model.py       # ML model training
+   │   └── predict.py           # Prediction utilities
+   ├── static/
+   │   ├── style.css            # Styling
+   │   └── script.js            # Frontend logic
+   ├── templates/
+   │   └── index.html           # Main page
+   └── data/                    # Auto-created cache folder
+
+================================================================================
+
+🌟 FEATURES:
+
+   ✅ 3 Machine Learning Models (Auto-selects best)
+      - Linear Regression
+      - Random Forest
+      - LSTM Neural Network
+
+   ✅ Technical Analysis
+      - Moving Averages (MA7, MA21, MA50)
+      - Volatility Analysis
+      - Risk Assessment
+
+   ✅ Investment Recommendations
+      - BUY / SELL / HOLD signals
+      - Risk Level (Low/Medium/High)
+      - 7-Day Price Forecasting
+
+   ✅ Interactive Charts
+      - Historical Price Chart
+      - Moving Averages
+      - Actual vs Predicted Prices
+
+   ✅ Model Performance Comparison
+      - RMSE and MAE metrics
+      - Best model selection
+
+================================================================================
+
+⚠️ IMPORTANT DISCLAIMER:
+
+   This system is for EDUCATIONAL PURPOSES ONLY.
+   
+   - NOT financial advice
+   - NOT a guarantee of future performance
+   - Stock market investments carry risks
+   
+   Always:
+   - Do your own research
+   - Consult licensed financial advisors
+   - Never invest more than you can afford to lose
+
+================================================================================
+
+🆘 SUPPORT:
+
+   For issues or questions, refer to:
+   - README.md (detailed documentation)
+   - Check error messages in terminal
+   - Verify Python version: python --version
+   - Ensure all dependencies installed: pip list
+
+================================================================================
+
+📈 HAPPY FORECASTING!
+
+   Remember: This is a tool to ASSIST decision-making, not replace it.
+   Combine AI insights with fundamental analysis and market research.
+
+================================================================================

@@ -1,0 +1,225 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║              🚀 AI STOCK FORECASTING - QUICK REFERENCE CARD 🚀               ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 📦 INSTALLATION                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Install All Dependencies:
+  $ pip install -r requirements.txt
+
+  Create Virtual Environment (Optional but Recommended):
+  $ python -m venv venv
+  $ source venv/bin/activate          # Linux/Mac
+  $ venv\Scripts\activate.bat         # Windows
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🚀 RUNNING THE APPLICATION                                                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Method 1 - Direct Python:
+  $ python app.py
+
+  Method 2 - Using Scripts:
+  $ ./run.sh                          # Linux/Mac
+  $ run.bat                           # Windows
+
+  Access Application:
+  → http://127.0.0.1:5000
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 📊 POPULAR STOCK TICKERS                                                     │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  US Tech Giants:
+  ├─ AAPL      → Apple Inc.
+  ├─ GOOGL     → Alphabet (Google)
+  ├─ MSFT      → Microsoft
+  ├─ AMZN      → Amazon
+  ├─ META      → Meta (Facebook)
+  ├─ NVDA      → NVIDIA
+  └─ TSLA      → Tesla
+
+  Other US Stocks:
+  ├─ JPM       → JPMorgan Chase
+  ├─ V         → Visa
+  ├─ WMT       → Walmart
+  └─ DIS       → Disney
+
+  Indian Stocks:
+  ├─ INFY.NS   → Infosys
+  ├─ TCS.NS    → Tata Consultancy Services
+  ├─ RELIANCE.NS → Reliance Industries
+  └─ HDFCBANK.NS → HDFC Bank
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🛠️ TROUBLESHOOTING                                                           │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Problem                          Solution
+  ─────────────────────────────────────────────────────────────────────────────
+  Port 5000 in use                → Edit app.py, change port to 8000
+  TensorFlow install fails        → pip install tensorflow-cpu==2.15.0
+  Invalid ticker symbol           → Verify on finance.yahoo.com
+  Not enough data                 → Select longer date range (100+ days)
+  Module not found                → pip install -r requirements.txt
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 📁 PROJECT STRUCTURE                                                         │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  stock_forecasting/
+  ├── app.py                       Main Flask application
+  ├── requirements.txt             Dependencies list
+  ├── model/
+  │   ├── train_model.py          ML model training (LR, RF, LSTM)
+  │   └── predict.py              Prediction utilities
+  ├── static/
+  │   ├── style.css               Dark theme styling
+  │   └── script.js               Frontend logic & charts
+  ├── templates/
+  │   └── index.html              Main dashboard page
+  └── data/                       Auto-created cache folder
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🤖 MACHINE LEARNING MODELS                                                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Model                  Type              Speed      Accuracy
+  ─────────────────────────────────────────────────────────────────────────────
+  Linear Regression      Traditional ML    ⚡⚡⚡      ⭐⭐
+  Random Forest          Ensemble ML       ⚡⚡       ⭐⭐⭐
+  LSTM Neural Network    Deep Learning     ⚡         ⭐⭐⭐⭐
+
+  → System automatically selects best model based on RMSE
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 📈 RECOMMENDATION LOGIC                                                      │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Predicted Change              Recommendation
+  ─────────────────────────────────────────────────────────────────────────────
+  > +3%                        🟢 BUY
+  -3% to +3%                   🟡 HOLD
+  < -3%                        🔴 SELL
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ ⚠️ RISK LEVELS                                                               │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Volatility                    Risk Level
+  ─────────────────────────────────────────────────────────────────────────────
+  < 1%                         🟢 Low Risk
+  1% - 2%                      🟡 Medium Risk
+  > 2%                         🔴 High Risk
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🌐 API ENDPOINTS                                                             │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  POST /api/predict
+  ├─ Body: { ticker, start_date, end_date }
+  └─ Returns: Predictions, recommendations, charts
+
+  GET /api/data?ticker=AAPL&start_date=...&end_date=...
+  └─ Returns: Historical data with technical indicators
+
+  GET /api/forecast
+  └─ Returns: Last prediction results
+
+  GET /health
+  └─ Returns: Server health status
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 💡 USAGE TIPS                                                                │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  ✅ Use 1-2 years of data for optimal predictions
+  ✅ First prediction takes 30-60 seconds (model training)
+  ✅ Subsequent predictions are faster (data cached for 1 hour)
+  ✅ More historical data = Better accuracy
+  ✅ Compare multiple models before deciding
+  ✅ Consider fundamental analysis alongside AI predictions
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🔧 PYTHON REQUIREMENTS                                                       │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Package              Version       Purpose
+  ─────────────────────────────────────────────────────────────────────────────
+  Flask                3.0.0         Web framework
+  NumPy                1.24.3        Numerical computing
+  Pandas               2.0.3         Data manipulation
+  Scikit-Learn         1.3.0         ML algorithms
+  TensorFlow           2.15.0        Deep learning (LSTM)
+  yfinance             0.2.28        Stock data API
+  Matplotlib           3.7.2         Plotting
+  Seaborn              0.12.2        Statistical visualization
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 📊 TECHNICAL INDICATORS                                                      │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Indicator            Description
+  ─────────────────────────────────────────────────────────────────────────────
+  MA7                  7-day moving average (short-term trend)
+  MA21                 21-day moving average (medium-term trend)
+  MA50                 50-day moving average (long-term trend)
+  Volatility           Standard deviation of returns (risk measure)
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 📝 USAGE WORKFLOW                                                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  1. Start Application        → python app.py
+  2. Open Browser             → http://127.0.0.1:5000
+  3. Enter Ticker             → e.g., AAPL
+  4. Select Date Range        → e.g., Last 2 years
+  5. Click "Predict"          → Wait 30-60 seconds
+  6. View Results             → Charts, recommendations, risk
+  7. Make Informed Decision   → Combine with own research
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ ⚠️ IMPORTANT DISCLAIMER                                                      │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  🚫 This system is for EDUCATIONAL PURPOSES ONLY
+  🚫 NOT financial advice or investment recommendation
+  🚫 Past performance does NOT guarantee future results
+  🚫 Stock market investments carry inherent risks
+
+  ✅ Always do your own research
+  ✅ Consult licensed financial advisors
+  ✅ Never invest more than you can afford to lose
+  ✅ Diversify your investment portfolio
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 📧 SUPPORT & DOCUMENTATION                                                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  README.md            → Complete documentation
+  SETUP_GUIDE.txt      → Quick setup instructions
+  PROJECT_STRUCTURE.txt → Detailed project overview
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                         Happy Forecasting! 📈💰                              ║
+║           Remember: Invest wisely and manage your risks carefully            ║
+╚══════════════════════════════════════════════════════════════════════════════╝

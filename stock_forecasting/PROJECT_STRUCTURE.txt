@@ -1,0 +1,200 @@
+AI-DRIVEN STOCK FORECASTING SYSTEM
+===================================
+
+📦 stock_forecasting/
+│
+├── 🚀 STARTUP SCRIPTS
+│   ├── run.sh                          # Linux/Mac startup script
+│   └── run.bat                         # Windows startup script
+│
+├── 📄 DOCUMENTATION
+│   ├── README.md                       # Complete project documentation
+│   ├── SETUP_GUIDE.txt                 # Quick setup instructions
+│   └── requirements.txt                # Python dependencies
+│
+├── ⚙️ BACKEND (Flask)
+│   └── app.py                          # Main Flask application
+│       ├── Routes:
+│       │   ├── GET  /                  → Home page
+│       │   ├── POST /api/predict       → Stock prediction
+│       │   ├── GET  /api/data          → Historical data
+│       │   ├── GET  /api/forecast      → Forecast data
+│       │   └── GET  /health            → Health check
+│
+├── 🧠 MACHINE LEARNING MODELS
+│   └── model/
+│       ├── __init__.py                 # Package initialization
+│       ├── train_model.py              # Model training logic
+│       │   ├── StockPredictor class
+│       │   ├── Linear Regression
+│       │   ├── Random Forest Regressor
+│       │   ├── LSTM Neural Network
+│       │   └── Automatic model selection
+│       │
+│       └── predict.py                  # Prediction utilities
+│           ├── fetch_stock_data()
+│           ├── calculate_technical_indicators()
+│           ├── calculate_risk_level()
+│           ├── generate_recommendation()
+│           └── prepare_chart_data()
+│
+├── 🎨 FRONTEND
+│   ├── templates/
+│   │   └── index.html                  # Main dashboard page
+│   │       ├── Navbar
+│   │       ├── Hero section
+│   │       ├── Prediction form
+│   │       ├── Loading animation
+│   │       ├── Results dashboard
+│   │       ├── Interactive charts
+│   │       └── Model comparison
+│   │
+│   └── static/
+│       ├── style.css                   # Dark theme styling
+│       │   ├── Modern finance UI
+│       │   ├── Responsive design
+│       │   ├── Card layouts
+│       │   ├── Chart containers
+│       │   └── Animations
+│       │
+│       └── script.js                   # Frontend logic
+│           ├── Form handling
+│           ├── API requests
+│           ├── Chart creation (Chart.js)
+│           ├── Data visualization
+│           └── UI updates
+│
+├── 💾 DATA (Auto-created)
+│   └── data/
+│       └── *_cache.json                # Cached stock data
+│
+└── 🔒 CONFIGURATION
+    └── .gitignore                      # Git ignore rules
+
+
+TECHNOLOGY STACK
+================
+
+Backend:
+├── Flask 3.0.0              → Web framework
+├── NumPy 1.24.3             → Numerical computing
+├── Pandas 2.0.3             → Data manipulation
+├── Scikit-Learn 1.3.0       → ML algorithms
+├── TensorFlow 2.15.0        → Deep learning
+└── yfinance 0.2.28          → Stock data API
+
+Frontend:
+├── HTML5                    → Structure
+├── CSS3                     → Styling
+├── JavaScript (ES6+)        → Interactivity
+└── Chart.js 4.4.0           → Data visualization
+
+
+KEY FEATURES
+============
+
+🤖 Machine Learning:
+   ✅ 3 ML models (LR, RF, LSTM)
+   ✅ Automatic best model selection
+   ✅ RMSE & MAE metrics
+   ✅ Time-series forecasting
+
+📊 Technical Analysis:
+   ✅ Moving averages (MA7, MA21, MA50)
+   ✅ Volatility calculation
+   ✅ Trend detection
+   ✅ Volume analysis
+
+💡 Investment Insights:
+   ✅ BUY/SELL/HOLD recommendations
+   ✅ Risk assessment (Low/Medium/High)
+   ✅ 7-day price forecasting
+   ✅ Price change predictions
+
+🎨 User Interface:
+   ✅ Modern dark theme
+   ✅ Responsive design
+   ✅ Interactive charts
+   ✅ Real-time updates
+   ✅ Loading animations
+   ✅ Error handling
+
+
+FILE SIZES
+==========
+
+app.py                 ~ 8 KB
+model/train_model.py   ~ 7 KB
+model/predict.py       ~ 5 KB
+static/style.css       ~ 12 KB
+static/script.js       ~ 10 KB
+templates/index.html   ~ 15 KB
+
+
+INSTALLATION
+============
+
+1. Install dependencies:
+   pip install -r requirements.txt
+
+2. Run application:
+   python app.py
+
+3. Open browser:
+   http://127.0.0.1:5000
+
+
+USAGE EXAMPLE
+=============
+
+Input:
+   Ticker: AAPL
+   Start Date: 2022-01-01
+   End Date: 2024-01-01
+
+Output:
+   ✅ Current Price: $185.50
+   ✅ Predicted Price (7 days): $192.30
+   ✅ Recommendation: BUY
+   ✅ Risk Level: Low
+   ✅ Price Change: +$6.80 (+3.67%)
+   ✅ Best Model: LSTM
+   ✅ Charts: Historical, Moving Averages, Predictions
+
+
+API ENDPOINTS
+=============
+
+POST /api/predict
+   Request: { ticker, start_date, end_date }
+   Response: { predictions, recommendation, risk, charts }
+
+GET /api/data?ticker=AAPL&start_date=...&end_date=...
+   Response: { historical data with indicators }
+
+GET /api/forecast
+   Response: { last prediction results }
+
+GET /health
+   Response: { status, timestamp }
+
+
+SUPPORTED MARKETS
+=================
+
+✅ US Stocks (NASDAQ, NYSE)
+   AAPL, TSLA, GOOGL, MSFT, AMZN, etc.
+
+✅ International Stocks
+   INFY.NS (India), etc.
+
+✅ Any Yahoo Finance supported ticker
+
+
+DISCLAIMER
+==========
+
+⚠️ For educational purposes only
+⚠️ Not financial advice
+⚠️ Stock market investments carry risks
+⚠️ Always consult financial advisors
